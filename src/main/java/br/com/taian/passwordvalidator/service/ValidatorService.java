@@ -12,10 +12,10 @@ import java.util.regex.Pattern;
 @Service
 public class ValidatorService {
 
-    private static final String SPECIAL_CHARACTER = "[!@#$%^&*()-+]";
-
+    private static final String CHARACTER_PATTERN = "(?=.*[!@#$%^&*()-+])(?=.*[a-zA-Z])(?=.*[0-9])";
 
     public boolean isValid(String password){
+
         /**
          * VERIFY IF PASSWORD IS EMPTY OR NULL
          * */
@@ -23,6 +23,7 @@ public class ValidatorService {
             log.error("Password is null or empty");
             return false;
         }
+
         /**
          * REMOVING SPACES AND VERIFY IF OR THE LENGTH IS LESS THAN 9
          * */
@@ -32,14 +33,17 @@ public class ValidatorService {
             return false;
         }
 
+        /**
+         * VERIFY REPECTED CHARACTERS
+         * */
         if(repeatedValues(password)){
             return false;
         }
 
-
-        Pattern pattern = Pattern.compile(SPECIAL_CHARACTER);
-        Matcher matcher = pattern.matcher(password);
-        if(!matcher.find()) {
+        /**
+         * VERIFY PATTERN OF STRING
+         * */
+        if(!validCharacters(password)){
             return false;
         }
         return true;
@@ -56,5 +60,14 @@ public class ValidatorService {
             }
         }
        return  result;
+    }
+
+    private boolean validCharacters(String password){
+        Pattern pattern = Pattern.compile(CHARACTER_PATTERN);
+        Matcher matcher = pattern.matcher(password);
+        if(!matcher.find()) {
+            return false;
+        }
+        return true;
     }
 }

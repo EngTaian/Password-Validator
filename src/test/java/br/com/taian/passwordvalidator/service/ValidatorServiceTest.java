@@ -50,4 +50,17 @@ public class ValidatorServiceTest {
         boolean response = validatorService.isValid("AbTp9!&&foo");
         Assertions.assertThat(response).isFalse();
     }
+
+    @Test
+    public void isValidAndShouldReturnFalseWhenReceivingPatternWithOutNumber(){
+        boolean response = validatorService.isValid("AbTp!&fo@");
+        Assertions.assertThat(response).isFalse();
+    }
+
+    @Test
+    public void isValidAndShouldReturnFalseWhenReceivingPatternWithOutLetter(){
+        boolean response = validatorService.isValid("1234!&58@");
+        Assertions.assertThat(response).isFalse();
+    }
+
 }
