@@ -16,8 +16,8 @@ public class ValidatorServiceTest {
 
 
     @Test
-    public void isValidAndShouldReturnTrue(){
-        boolean response = validatorService.isValid("abcdefghi");
+    public void isValidAndShouldReturnTrueWithCorrectPassword(){
+        boolean response = validatorService.isValid("AbTp9!fok");
         Assertions.assertThat(response).isTrue();
     }
 
@@ -39,5 +39,15 @@ public class ValidatorServiceTest {
         Assertions.assertThat(response).isFalse();
     }
 
+    @Test
+    public void isValidAndShouldReturnFalseWhenReceivingRepectedChar(){
+        boolean response = validatorService.isValid("AbTp9foçç");
+        Assertions.assertThat(response).isFalse();
+    }
 
+    @Test
+    public void isValidAndShouldReturnFalseWhenReceivingRepectedEspecialChar(){
+        boolean response = validatorService.isValid("AbTp9!&&foo");
+        Assertions.assertThat(response).isFalse();
+    }
 }
