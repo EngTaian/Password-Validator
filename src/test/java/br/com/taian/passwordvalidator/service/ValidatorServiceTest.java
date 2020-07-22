@@ -46,7 +46,7 @@ public class ValidatorServiceTest {
     }
 
     @Test
-    public void isValidAndShouldReturnFalseWhenReceivingRepectedEspecialChar(){
+    public void isValidAndShouldReturnFalseWhenReceivingRepectedSpecialChar(){
         boolean response = validatorService.isValid("AbTp9!&&foo");
         Assertions.assertThat(response).isFalse();
     }

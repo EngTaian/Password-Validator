@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 @Service
 public class ValidatorService {
 
-    private static final String ESPECIAL_CARACTER = "[!@#$%^&*()-+]";
+    private static final String SPECIAL_CHARACTER = "[!@#$%^&*()-+]";
 
 
     public boolean isValid(String password){
@@ -37,7 +37,7 @@ public class ValidatorService {
         }
 
 
-        Pattern pattern = Pattern.compile(ESPECIAL_CARACTER);
+        Pattern pattern = Pattern.compile(SPECIAL_CHARACTER);
         Matcher matcher = pattern.matcher(password);
         if(!matcher.find()) {
             return false;
