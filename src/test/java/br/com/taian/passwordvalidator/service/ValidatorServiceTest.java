@@ -63,4 +63,10 @@ public class ValidatorServiceTest {
         Assertions.assertThat(response).isFalse();
     }
 
+    @Test
+    public void isValidAndShouldReturnFalseWhenReceivingPasswordWithSpaces(){
+        boolean response = validatorService.isValid("AbTp9    fok");
+        Assertions.assertThat(response).isFalse();
+    }
+
 }

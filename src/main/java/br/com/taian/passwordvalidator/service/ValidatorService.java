@@ -12,8 +12,11 @@ import java.util.regex.Pattern;
 @Service
 public class ValidatorService {
 
-    private static final String CHARACTER_PATTERN = "(?=.*[!@#$%^&*()-+])(?=.*[a-zA-Z])(?=.*[0-9])";
+    private static final String CHARACTER_PATTERN = "(?=.*[!@#$%^&*()-+])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])";
 
+    /**
+     * THIS IS THE MAIN FUNCTION OF THE VALIDATE PASSWORD
+     * */
     public boolean isValid(String password){
 
         /**
@@ -27,7 +30,7 @@ public class ValidatorService {
         /**
          * REMOVING SPACES AND VERIFY IF OR THE LENGTH IS LESS THAN 9
          * */
-        password = password.trim();
+        password = password.replace(" ", "");
         if (password.length() < 9){
             log.error("The length is less than 9");
             return false;
@@ -37,6 +40,7 @@ public class ValidatorService {
          * VERIFY REPECTED CHARACTERS
          * */
         if(repeatedValues(password)){
+            log.error("Password has repeated characters");
             return false;
         }
 
@@ -44,11 +48,15 @@ public class ValidatorService {
          * VERIFY PATTERN OF STRING
          * */
         if(!validCharacters(password)){
+            log.error("Password not respect the pattern");
             return false;
         }
         return true;
     }
 
+    /**
+     * THIS FUNCTION VALID REPECTIVE CHARACTERS IN THE PASSWORD
+     * */
     private boolean repeatedValues(String password){
        char[] passwordChar = password.toLowerCase().toCharArray();
        boolean result = false;
@@ -62,6 +70,9 @@ public class ValidatorService {
        return  result;
     }
 
+    /**
+     * THIS FUNCTION VALID THE PATTERN OF THE PASSWORD
+     * */
     private boolean validCharacters(String password){
         Pattern pattern = Pattern.compile(CHARACTER_PATTERN);
         Matcher matcher = pattern.matcher(password);
