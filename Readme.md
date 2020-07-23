@@ -31,7 +31,7 @@ A solução do foi desenvolvida realizando um raciocínio lógico simples seguin
 
 Se alguma dessas validações não for encontrada é retornado um false indicando que a senha não passou, caso contrário,é retornado true permitindo que a função vá para o próximo passo.
 
-  5º passo: Passando por todos os passos anterior a senha é validada e retornado o valor true para a controller, que é onde é realizado o retorno da resposta para o cliente. 
+  5º passo: Passando por todos os passos anteriores a senha é validada e retornado o valor true para a controller, que é onde é realizado o retorno da resposta para o cliente. 
 
 ## :computer: Tecnologias
 
